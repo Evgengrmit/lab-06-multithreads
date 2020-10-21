@@ -8,7 +8,6 @@
 #include <csignal>
 #include <cstdlib>
 #include <ctime>
-#include <iostream>
 #include <thread>
 
 std::atomic<bool> continueProcess = true;
@@ -39,8 +38,7 @@ void hashConfig(JSON& j) {
     }
   }
 }
-
-int main(int argc, char* argv[]) {
+void findHash(const int& argc, char* argv[]){
   unsigned int numberOfThreads;
   std::string json_path;
   std::srand(time(nullptr));
@@ -90,5 +88,8 @@ int main(int argc, char* argv[]) {
     std::ofstream fout{json_path};
     fout << json_obj;
   }
-  return 0;
 }
+//int main(int argc, char* argv[]) {
+//  findHash(argc,argv);
+//  return 0;
+//}
