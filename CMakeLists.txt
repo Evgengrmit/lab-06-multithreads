@@ -30,7 +30,9 @@ find_package(GTest CONFIG REQUIRED)
 
 hunter_add_package(Boost COMPONENTS filesystem log system thread)
 find_package(Boost CONFIG REQUIRED filesystem log log_setup system thread)
-find_package(Threads)
+
+hunter_add_package(Boost COMPONENTS log thread system)
+find_package(Boost CONFIG REQUIRED log thread system)
 
 hunter_add_package(nlohmann_json)
 find_package(nlohmann_json CONFIG REQUIRED)
@@ -59,7 +61,6 @@ target_include_directories(tests
 
 target_link_libraries(
         template
-        ${CMAKE_THREAD_LIBS_INIT}
         Boost::log_setup
         Boost::log
         Boost::thread
@@ -69,7 +70,6 @@ target_link_libraries(
 )
 target_link_libraries(
         tests
-        ${CMAKE_THREAD_LIBS_INIT}
         template
         GTest::gtest_main
 )
